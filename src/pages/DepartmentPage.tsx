@@ -47,7 +47,7 @@ const DepartmentPage = () => {
             <div className="flex flex-wrap justify-between items-center bg-white shadow-md rounded-lg p-4">
 
             <div>
-                    <h1 className="text-3xl font-bold">Department</h1>
+                    <h1 className="text-3xl font-bold text-[#173E73]">Department</h1>
                     <p className="text-gray-500">Home &gt; Configuration</p>
                 </div>
                 <div className="flex flex-wrap gap-2 sm:gap-2 items-center mt-2 sm:mt-0">

@@ -13,12 +13,12 @@ const Navbar = () => {
                     placeholder="Search..."
                      className="border px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <SearchOutlined style={{ fontSize: "16px" }} />
-                <BellOutlined />
-                <Button icon={<QuestionCircleOutlined />} type="default">
+                <SearchOutlined style={{ fontSize: "16px",cursor:"pointer" }} />
+                <BellOutlined style={{cursor:"pointer"}} />
+                <Button icon={<QuestionCircleOutlined />} type="default" style={{cursor:"pointer"}}>
                     Help
                 </Button>
-                <Avatar src={svg} />
+                <Avatar src={svg} style={{cursor:"pointer"}}/>
             </div>
         </nav>
     );
