@@ -6,8 +6,7 @@ import { Avatar } from 'antd';
 import svg from "../assets/react.svg"
 const Navbar = () => {
     return (
-        <nav className="bg-white shadow p-4 flex justify-between items-center">
-            <h1 className="text-lg font-semibold">Dashboard</h1>
+        <nav className="bg-white shadow p-4 flex justify-end items-center">            
             <div className="flex gap-3">
                 <input
                     type="text"
