@@ -7,6 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<ConfigurationPage />} />
         <Route path="/configuration" element={<ConfigurationPage />} />
         <Route path="/department" element={<DepartmentPage />} />
       </Routes>
