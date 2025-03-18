@@ -50,7 +50,7 @@ const Navbar = () => {
                     Help
                 </Button>
 
-                {/* Avatar Dropdown */}
+                
                 <Dropdown menu={{ items }} trigger={["click"]} >
                     <Avatar src={svg} style={{ cursor: "pointer"}} />
                 </Dropdown>
