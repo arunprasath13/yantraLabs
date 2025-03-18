@@ -1,4 +1,4 @@
-import { SearchOutlined, BellOutlined, QuestionCircleOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { SearchOutlined, BellOutlined, QuestionCircleOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Button, Avatar, Dropdown, MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import useAutheStore from "../store/useAutheStore";
