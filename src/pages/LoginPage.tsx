@@ -1,18 +1,17 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
 import useAutheStore from "../store/useAutheStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginImage from "../../src/assets/yantra.png";
-import {User} from "../types/User"
+import { User } from "../types/User";
+import { useState } from "react"; 
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
     password: z.string().min(3, "Password must be at least 3 characters"),
 });
-
 
 const fakeLogin = async (data: { email: string; password: string }): Promise<User> => {
     return new Promise((resolve) => {
@@ -29,30 +28,29 @@ const fakeLogin = async (data: { email: string; password: string }): Promise<Use
 const LoginPage = () => {
     const navigate = useNavigate();
     const { login } = useAutheStore();
-
     
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(loginSchema),
     });
 
-    
-    const mutation = useMutation<User, Error, { email: string; password: string }>({
-        mutationFn: fakeLogin,
-        onSuccess: (user) => {
+    const [loading, setLoading] = useState(false); 
+
+    const onSubmit = async (formData: { email: string; password: string }) => {
+        setLoading(true); 
+        try {
+            const user = await fakeLogin(formData);
             login(user);
             toast.success("Logged in successfully!");
             navigate("/");
-        },
-    });
-
-    
-    const onSubmit = (formData: { email: string; password: string }) => {
-        mutation.mutate(formData);
+        } catch (error) {
+            toast.error("Login failed. Please try again.");
+        } finally {
+            setLoading(false); 
+        }
     };
 
     return (
         <div className="flex min-h-screen overflow-hidden">
-            
             <div className="w-1/2 hidden md:flex justify-center items-center bg-gray-200">
                 <img 
                     src={loginImage} 
@@ -61,12 +59,10 @@ const LoginPage = () => {
                 />
             </div>
 
-           
             <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
                 <div className="bg-white p-8 rounded-lg shadow-lg w-96">
                     <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
-                    
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-1">Email</label>
@@ -93,9 +89,9 @@ const LoginPage = () => {
                         <button 
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-                            disabled={mutation.isPending}
+                            disabled={loading}
                         >
-                            {mutation.isPending ? "Logging in........" : "Login"}
+                            {loading ? "Logging in..." : "Login"} 
                         </button>
                     </form>
                 </div>
