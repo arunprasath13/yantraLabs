@@ -1,9 +1,12 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { FC, ReactNode } from "react";
+
+
 interface DashboardLayoutProps {
   children: ReactNode;
 }
+
 const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <div className="flex h-screen">      
